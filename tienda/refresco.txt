@@ -1,0 +1,3 @@
+Nombre: REFRESCO
+Cantidad: 30
+Precio: 15

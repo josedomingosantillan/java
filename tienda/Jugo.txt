@@ -1,0 +1,3 @@
+Nombre: Jugo
+Cantidad: 5
+Precio: 18

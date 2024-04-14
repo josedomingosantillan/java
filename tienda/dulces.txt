@@ -1,0 +1,3 @@
+Nombre: dulces
+Cantidad: 10
+Precio: 3

@@ -1,0 +1,3 @@
+Nombre: papas
+Cantidad: 2
+Precio: 15

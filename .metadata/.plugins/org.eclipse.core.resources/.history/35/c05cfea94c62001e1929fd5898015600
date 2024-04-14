@@ -1,0 +1,76 @@
+
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import javax.swing.JOptionPane;
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
+/**
+ *
+ * @author ferna
+ */
+public class mysql {
+    private String login = "root";
+    private String password = "1234";
+    private String url = "jdbc:mysql://localhost/ejemplo";
+    private String mensaje;
+    Connection coon = null;
+    int id;
+    int edad;
+    String nombre;
+
+    public ResultSet ejecutarConsulta(String sql) throws SQLException {
+        coon = DriverManager.getConnection(url, login, password);
+        Statement stmt = coon.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        return rs;
+    }
+    
+    public void cerrarConexion() throws SQLException {
+        coon.close();
+    }
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public void conectar(){
+        try{
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            coon = DriverManager.getConnection(url,login,password);
+            if(coon !=  null)
+            {
+            mensaje = "Conexion Exitosa aa" ;
+            }
+        }catch(Exception e){mensaje ="Error de conexion" +e;}
+    }
+    
+    public void insertar(){
+        try{
+            Connection conexion = DriverManager.getConnection(url, login, password);
+            PreparedStatement stmt = conexion.prepareStatement(" insert into persona values ("+ id +",'"+ nombre +"',"+ edad + ");");
+            stmt.executeUpdate();
+            mensaje = "se realizo la captura";
+        }catch(Exception e){mensaje = "Error de conexion" +e;
+        }
+    }
+    
+    public void eliminar(){
+        try {
+            Connection conexion = DriverManager.getConnection(url, login, password);
+            String del = "delete from persona where id = "+ id +" ;";
+            PreparedStatement insert = conexion.prepareStatement(del);
+            mensaje = "se elimino correctamente";
+        } 
+        catch (SQLException ex) {
+        }
+    }
+}
